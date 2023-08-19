@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.netology.testmode.data.DataGenerator;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -24,7 +25,7 @@ class AuthTest {
 	void shouldSuccessfulLoginIfRegisteredActiveUser() {
 		var registeredUser = getRegisteredUser("active");
 		$("[data-test-id='login'] input").setValue(registeredUser.getLogin());
-		$("[data-test-id='password'] input").setValue(registeredUser.getLogin());
+		$("[data-test-id='password'] input").setValue(registeredUser.getPassword());
 		$("button.button").click();
 		$("h2").shouldHave(Condition.exactText("Интернет Банк")).shouldBe(Condition.visible);
 	}
